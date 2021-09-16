@@ -6,30 +6,29 @@ using System.Threading.Tasks;
 
 namespace Gauss
 {
-    class Fraction
+    public class Fraction
     {
-        private int numerator;
-        private int denominator;
-        Fraction(int numeratorValue)
+        public int Numerator { get; }
+        public int Denominator { get; }
+
+        public Fraction(int numeratorValue)
         {
-            numerator = numeratorValue;
-            denominator = 1;
+            Numerator = numeratorValue;
+            Denominator = 1;
         }
 
-        Fraction (int numeratorValue, int denominatorValue)
+        public Fraction (int numeratorValue, int denominatorValue)
         {
-            numerator = numeratorValue;
-            denominator = denominatorValue;
+            Numerator = numeratorValue;
+            Denominator = denominatorValue;
         }
 
         public static Fraction operator +(Fraction f1, Fraction f2)
         {
             //новый знаменатель
-            int newDenominator = NOK(Math.Abs(f1.denominator), f2.denominator);
-            if (newDenominator == 1)
-                throw new Exception();
+            int newDenominator = NOK(Math.Abs(f1.Denominator), f2.Denominator);
             //новый числитель: домножение на коэффициент, потом сумма
-            int newNumerator = f1.numerator * newDenominator / f1.denominator + f2.numerator * newDenominator / f2.denominator;
+            int newNumerator = f1.Numerator * newDenominator / f1.Denominator + f2.Numerator * newDenominator / f2.Denominator;
             int divisor = Nod(newDenominator, newNumerator);
             newDenominator /= divisor;
             newNumerator /= divisor;
