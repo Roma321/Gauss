@@ -104,5 +104,55 @@ namespace GaussTests
             Assert.AreEqual(f3.Numerator, 1);
             Assert.AreEqual(f3.Denominator, 1);
         }
+
+        [TestMethod]
+        public void SubtractionTestMethod()
+        {
+            Fraction f1 = new Fraction(-1, 5);
+            Fraction f2 = new Fraction(0, 5);
+            Fraction f3 = f1 - f2;
+            Assert.AreEqual(f3.Numerator, -1);
+            Assert.AreEqual(f3.Denominator, 5);
+        }
+
+        [TestMethod]
+        public void SubtractionTestMethod2()
+        {
+            Fraction f1 = new Fraction(-1, 5);
+            Fraction f2 = new Fraction(-6, 5);
+            Fraction f3 = f1 - f2;
+            Assert.AreEqual(f3.Numerator, 1);
+            Assert.AreEqual(f3.Denominator, 1);
+        }
+
+        [TestMethod]
+        public void SubtractionTestMethod3()
+        {
+            Fraction f1 = new Fraction(7, 12);
+            Fraction f2 = new Fraction(38, 24);
+            Fraction f3 = f1 - f2;
+            Assert.AreEqual(f3.Numerator, -1);
+            Assert.AreEqual(f3.Denominator, 1);
+        }
+
+        [TestMethod]
+        public void DivisionTestMethod()
+        {
+            Fraction f1 = new Fraction(-1, 5);
+            Fraction f2 = new Fraction(-6, 5);
+            Fraction f3 = f1 / f2;
+            Assert.AreEqual(f3.Numerator, 1);
+            Assert.AreEqual(f3.Denominator, 6);
+        }
+
+        [TestMethod]
+        public void DivisionTestMethod2()
+        {
+            Fraction f1 = new Fraction(-1, 5);
+            Fraction f2 = new Fraction(6, 5);
+            Fraction f3 = f1 / f2;
+            Assert.AreEqual(f3.Numerator, -1);
+            Assert.AreEqual(f3.Denominator, 6);
+        }
     }
 }
