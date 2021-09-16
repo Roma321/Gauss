@@ -29,12 +29,93 @@ namespace Gauss
             int newDenominator = NOK(Math.Abs(f1.Denominator), f2.Denominator);
             //новый числитель: домножение на коэффициент, потом сумма
             int newNumerator = f1.Numerator * newDenominator / f1.Denominator + f2.Numerator * newDenominator / f2.Denominator;
+            if (newNumerator == 0)
+                return new Fraction(0, 1);
+            if (newDenominator < 0 && newNumerator < 0)
+            {
+                newDenominator = -newDenominator;
+                newNumerator = -newNumerator;
+            }
             int divisor = Nod(newDenominator, newNumerator);
             newDenominator /= divisor;
             newNumerator /= divisor;
             return new Fraction(newNumerator, newDenominator);
 
         }
+
+        public static Fraction operator -(Fraction f1, Fraction f2)
+        {
+            return f1 + f2 * (-1);
+        }
+
+        public static Fraction operator *(Fraction f1, int a)
+        {
+            int newDenominator = f1.Denominator;
+            //новый числитель
+            int newNumerator = f1.Numerator * a;
+            int divisor = Nod(newDenominator, newNumerator);
+            if (newNumerator == 0)
+                return new Fraction(0, 1);
+            if (newDenominator < 0 && newNumerator < 0)
+            {
+                newDenominator = -newDenominator;
+                newNumerator = -newNumerator;
+            }
+            newDenominator /= divisor;
+            newNumerator /= divisor;
+            return new Fraction(newNumerator, newDenominator);
+        }
+
+        public static Fraction operator *(int a, Fraction f1)
+        {
+            return f1 * a;
+        }
+
+        public static Fraction operator /(Fraction f1, int a)
+        {
+            int newDenominator = f1.Denominator * a;
+            //новый числитель
+            int newNumerator = f1.Numerator;
+            int divisor = Nod(newDenominator, newNumerator);
+            if (newNumerator == 0)
+                return new Fraction(0, 1);
+            if (newDenominator < 0 && newNumerator < 0)
+            {
+                newDenominator = -newDenominator;
+                newNumerator = -newNumerator;
+            }
+            newDenominator /= divisor;
+            newNumerator /= divisor;
+            return new Fraction(newNumerator, newDenominator);
+        }
+
+        public static Fraction operator /(Fraction f1, Fraction f2)
+        {
+            return f1 * (new Fraction(f2.Denominator, f2.Numerator));
+        }
+
+
+
+        public static Fraction operator *(Fraction f1, Fraction f2)
+        {
+            //новый знаменатель
+            int newDenominator = f1.Denominator*f2.Denominator;
+            //новый числитель
+            int newNumerator = f1.Numerator * f2.Numerator;
+            if (newNumerator == 0)
+                return new Fraction(0, 1);
+            if (newDenominator<0&&newNumerator<0)
+            {
+                newDenominator = -newDenominator;
+                newNumerator = -newNumerator;
+            }
+            int divisor = Nod(newDenominator, newNumerator);
+            newDenominator /= divisor;
+            newNumerator /= divisor;
+            return new Fraction(newNumerator, newDenominator);
+        }
+
+
         /// <summary>
         /// Наименьшее общее кратное
         /// </summary>

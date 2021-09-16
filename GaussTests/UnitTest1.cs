@@ -67,5 +67,42 @@ namespace GaussTests
             Assert.AreEqual(f3.Numerator, 1);
             Assert.AreEqual(f3.Denominator, 1);
         }
+        [TestMethod]
+        public void MultiplyTestMethod()
+        {
+            Fraction f1 = new Fraction(-1, 5);
+            Fraction f2 = new Fraction(6, 5);
+            Fraction f3 = f1 * f2;
+            Assert.AreEqual(f3.Numerator, -6);
+            Assert.AreEqual(f3.Denominator, 25);
+        }
+        [TestMethod]
+        public void MultiplyTestMethod2()
+        {
+            Fraction f1 = new Fraction(-7, 5);
+            Fraction f2 = new Fraction(5, 14);
+            Fraction f3 = f1 * f2;
+            Assert.AreEqual(f3.Numerator, -1);
+            Assert.AreEqual(f3.Denominator, 2);
+        }
+
+        [TestMethod]
+        public void MultiplyTestMethod3()
+        {
+            Fraction f1 = new Fraction(-1, 5);
+            Fraction f2 = new Fraction(0, 5);
+            Fraction f3 = f1 * f2;
+            Assert.AreEqual(f3.Numerator, 0);
+            Assert.AreEqual(f3.Denominator, 1);
+        }
+        [TestMethod]
+        public void MultiplyTestMethod4()
+        {
+            Fraction f1 = new Fraction(-1, 5);
+            
+            Fraction f3 = f1 * (-5);
+            Assert.AreEqual(f3.Numerator, 1);
+            Assert.AreEqual(f3.Denominator, 1);
+        }
     }
 }
