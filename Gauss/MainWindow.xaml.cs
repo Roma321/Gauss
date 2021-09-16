@@ -23,6 +23,7 @@ namespace Gauss
         public MainWindow()
         {
             InitializeComponent();
+            Console.WriteLine("Hello world!");
         }
     }
 }
