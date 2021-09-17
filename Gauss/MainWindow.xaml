@@ -5,14 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Gauss"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="1000">
+        Title="MainWindow" Height="600" Width="1020">
     <Grid>
         <Label Content="Количество переменных" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <ComboBox HorizontalAlignment="Left" Margin="162,13,0,0" VerticalAlignment="Top" Width="120" Name="VariablesNumber" SelectionChanged="AddColumns"/>
         <Label Content="Количество уравнений" HorizontalAlignment="Left" Margin="295,10,0,0" VerticalAlignment="Top"/>
         <ComboBox HorizontalAlignment="Left" Margin="438,13,0,0" VerticalAlignment="Top" Width="120" Name="EquationsNumber" SelectionChanged="AddRows"/>
         <Grid HorizontalAlignment="Left" Height="500" Margin="16,41,0,0" VerticalAlignment="Top" Width="800" Name="Matrix" Visibility="Visible"/>
-        <ListBox HorizontalAlignment="Left" Height="100" Margin="831,41,0,0" VerticalAlignment="Top" Width="100" Name="Columns"/>
+        <Grid HorizontalAlignment="Left" Height="100" Margin="816,137,0,0" VerticalAlignment="Top" Width="163" Name="ColumnsList"/>
+        <Label Content="По каким столбцам приводить?" HorizontalAlignment="Left" Margin="816,85,0,0" VerticalAlignment="Top" Height="47"/>
+        <Label Content="" HorizontalAlignment="Left" Margin="702,15,0,0" VerticalAlignment="Top" Width="300" Name="LabelOfColumns"/>
+        <Label Content="Список столбцов:" HorizontalAlignment="Left" Margin="580,10,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
