@@ -23,6 +23,7 @@ namespace Gauss
         int equationsNumber = 0;
         int variablesNumber = 0;
         List<int> list;
+        TextBox[,] textBoxes;
         public MainWindow()
         {
             InitializeComponent();
@@ -83,9 +84,11 @@ namespace Gauss
         {
             if (Matrix.ColumnDefinitions.Count == 0 || Matrix.ColumnDefinitions.Count == 0)
                 return;
+            textBoxes = new TextBox[variablesNumber + 1, equationsNumber];
             for (int i = 0; i <= variablesNumber; i++)
             {
-                for (int j = 1; j <= equationsNumber; j++) {
+                for (int j = 1; j <= equationsNumber; j++)
+                {
                     TextBox textBox = new TextBox
                     {
                         Text = "0"
@@ -93,6 +96,7 @@ namespace Gauss
                     Grid.SetColumn(textBox, i);
                     Grid.SetRow(textBox, j);
                     Matrix.Children.Add(textBox);
+                    textBoxes[i, j - 1] = textBox;
                 }
             }
         }
@@ -126,14 +130,60 @@ namespace Gauss
         {
             ((Button)sender).IsEnabled = false;
             int a = int.Parse(((Button)sender).Content.ToString());
-            list.Add(a);
-            if (list.Count == equationsNumber) {
+            list.Add(a - 1);
+            if (list.Count == equationsNumber)
+            {
                 foreach (Button button in ColumnsList.Children)
                 {
                     button.IsEnabled = false;
                 }
             }
             LabelOfColumns.Content += a + " ";
+        }
+
+        private void StartGauss(object sender, RoutedEventArgs e)
+        {
+            double[,] myMatrix = new double[variablesNumber + 1, equationsNumber];
+            for (int i = 0; i <= variablesNumber; i++)
+            {
+                for (int j = 0; j < equationsNumber; j++)
+                {
+                    myMatrix[i, j] = double.Parse(textBoxes[i, j].Text);
+                }
+            }
+            int currentRow = 0;
+            foreach (int currentColumn in list)
+            {
+                double koef = myMatrix[currentColumn, currentRow];
+                if (koef == 0)
+                {
+                    MessageBox.Show("В " + (currentColumn+1) + "-м столбце " + (currentRow+1) + "-й строки стоит 0. Выполнить приведение нельзя.");
+                    return;
+                }
+                for (int i = 0; i <= variablesNumber; i++)
+                {
+                    myMatrix[i, currentRow] /= koef;
+                }
+                for (int row = 0; row < equationsNumber; row++)
+                {
+                    if (row == currentRow) continue;
+                    double subtractKoef = myMatrix[currentColumn, row];
+                    for (int col = 0; col <= variablesNumber; col++)
+                    {
+                        myMatrix[col, row] -= myMatrix[col, currentRow] * subtractKoef;
+                    }
+                }
+                currentRow++;
+            }
+
+
+            for (int i = 0; i <= variablesNumber; i++)
+            {
+                for (int j = 0; j < equationsNumber; j++)
+                {
+                    textBoxes[i, j].Text = myMatrix[i, j].ToString();
+                }
+            }
         }
     }
 }
