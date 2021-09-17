@@ -35,7 +35,11 @@ namespace Gauss
                 list = new List<int>();
             }
         }
-
+        /// <summary>
+        /// Добавление строк в таблицу
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddRows(object sender, SelectionChangedEventArgs e)
         {
             Matrix.RowDefinitions.Clear();
@@ -44,6 +48,12 @@ namespace Gauss
                 Matrix.RowDefinitions.Add(new RowDefinition());
             AddTextFields();
         }
+
+        /// <summary>
+        /// Добавление колонок в таблицу
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
 
         private void AddColumns(object sender, SelectionChangedEventArgs e)
         {
@@ -55,6 +65,10 @@ namespace Gauss
             AddTextFields();
             AddButtons();
         }
+
+        /// <summary>
+        /// Добавление подписей Х1,...,Хn и вектора b
+        /// </summary>
         private void AddHeaders()
         {
             if (Matrix.ColumnDefinitions.Count == 0 || Matrix.ColumnDefinitions.Count == 0)
@@ -79,7 +93,9 @@ namespace Gauss
             Grid.SetColumn(anotherTextBlock, variablesNumber);
             Matrix.Children.Add(anotherTextBlock);
         }
-
+        /// <summary>
+        /// добавление полей для работы с матрицей
+        /// </summary>
         private void AddTextFields()
         {
             if (Matrix.ColumnDefinitions.Count == 0 || Matrix.ColumnDefinitions.Count == 0)
@@ -96,11 +112,14 @@ namespace Gauss
                     Grid.SetColumn(textBox, i);
                     Grid.SetRow(textBox, j);
                     Matrix.Children.Add(textBox);
+                    //все поля также сохраняются в отдельном массиве, чтобы к ним можно было обратиться
                     textBoxes[i, j - 1] = textBox;
                 }
             }
         }
-
+        /// <summary>
+        /// Кнопки для выбора столбцов для приведения
+        /// </summary>
         private void AddButtons()
         {
             list.Clear();
@@ -125,7 +144,11 @@ namespace Gauss
                 ColumnsList.Children.Add(button);
             }
         }
-
+        /// <summary>
+        /// Действие кнопки, отвечающей за выбор столбца. Следит за непревышением количества уравнений
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ChooseColumn(object sender, EventArgs e)
         {
             ((Button)sender).IsEnabled = false;
@@ -140,7 +163,11 @@ namespace Gauss
             }
             LabelOfColumns.Content += a + " ";
         }
-
+        /// <summary>
+        /// Метод Гаусса
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void StartGauss(object sender, RoutedEventArgs e)
         {
             double[,] myMatrix = new double[variablesNumber + 1, equationsNumber];
