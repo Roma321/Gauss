@@ -27,12 +27,13 @@ namespace Gauss
         public MainWindow()
         {
             InitializeComponent();
+            list = new List<int>();
+            Matrix.ShowGridLines = true;
             for (int i = 1; i < 16; i++)
             {
                 VariablesNumber.Items.Add(i);
                 EquationsNumber.Items.Add(i);
-                Matrix.ShowGridLines = true;
-                list = new List<int>();
+           
             }
         }
         /// <summary>
@@ -57,6 +58,7 @@ namespace Gauss
 
         private void AddColumns(object sender, SelectionChangedEventArgs e)
         {
+            Matrix.Children.Clear();
             Matrix.ColumnDefinitions.Clear();
             variablesNumber = Int32.Parse(VariablesNumber.SelectedItem.ToString());
             for (int i = 0; i <= variablesNumber; i++)
