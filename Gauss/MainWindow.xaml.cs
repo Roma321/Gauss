@@ -172,18 +172,18 @@ namespace Gauss
         /// <param name="e"></param>
         private void StartGauss(object sender, RoutedEventArgs e)
         {
-            double[,] myMatrix = new double[variablesNumber + 1, equationsNumber];
+            Fraction[,] myMatrix = new Fraction[variablesNumber + 1, equationsNumber];
             for (int i = 0; i <= variablesNumber; i++)
             {
                 for (int j = 0; j < equationsNumber; j++)
                 {
-                    myMatrix[i, j] = double.Parse(textBoxes[i, j].Text);
+                    myMatrix[i, j] = new Fraction(textBoxes[i, j].Text);
                 }
             }
             int currentRow = 0;
             foreach (int currentColumn in list)
             {
-                double koef = myMatrix[currentColumn, currentRow];
+                Fraction koef = myMatrix[currentColumn, currentRow];
                 if (koef == 0)
                 {
                     MessageBox.Show("В " + (currentColumn+1) + "-м столбце " + (currentRow+1) + "-й строки стоит 0. Выполнить приведение нельзя.");
@@ -196,7 +196,7 @@ namespace Gauss
                 for (int row = 0; row < equationsNumber; row++)
                 {
                     if (row == currentRow) continue;
-                    double subtractKoef = myMatrix[currentColumn, row];
+                    Fraction subtractKoef = myMatrix[currentColumn, row];
                     for (int col = 0; col <= variablesNumber; col++)
                     {
                         myMatrix[col, row] -= myMatrix[col, currentRow] * subtractKoef;

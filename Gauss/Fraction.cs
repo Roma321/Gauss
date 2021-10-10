@@ -23,6 +23,12 @@ namespace Gauss
             Denominator = denominatorValue;
         }
 
+        public Fraction(String str)
+        {
+            Numerator = Int32.Parse(str);
+            Denominator = 1;
+        }
+
         public static Fraction operator +(Fraction f1, Fraction f2)
         {
             //новый знаменатель
@@ -160,6 +166,29 @@ namespace Gauss
             }
             if (d != 0 && n != 0) return d;
             return -1;
+        }
+
+        public override string ToString()
+        {
+            return Numerator + "/" + Denominator;
+        }
+
+        public static Boolean operator !=(Fraction f1, Fraction f2)
+        {
+            return !(f1 == f2);
+        }
+        public static Boolean operator ==(Fraction f1, Fraction f2)
+        {
+            return (f1 / f2).Denominator == 1 && 1 == (f1 / f2).Numerator;
+        }
+
+        public static Boolean operator !=(Fraction f1, int a)
+        {
+            return !(f1 == a);
+        }
+        public static Boolean operator ==(Fraction f1, int a)
+        {
+            return f1.Numerator == a;
         }
     }
 }
